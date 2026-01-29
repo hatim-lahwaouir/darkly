@@ -1,0 +1,9 @@
+EndPoint /index.php?page=member&id='&Submit=Submit
+
++ just by supplying a sinle quote in the id we observe a mariadb error 
+|
+|- Error : You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\'' at line 1
+|
+|- That indicate that user input is directly reflected inside the sql query 
+|- Error messages aren't handled properly
+
