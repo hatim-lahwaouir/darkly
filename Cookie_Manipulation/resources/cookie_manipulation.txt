@@ -1,0 +1,11 @@
+when checking the application and cookies there is a cookie named i_am_admin and it shows a crypted value like this 68934a3e9455fa72420237eb05902327 
+By modifying the cookie value to represent true and refreshing the page, the application granted administrative access and displayed the flag.
+The application is making an authorization decision based on a client-controlled cookie.
+The server is trusting a value stored in the browser to determine whether the user is an administrator.
+Anything stored in the browser can be modified by the user.
+Authorization logic depends on client-side data.
+No server-side validation of admin privileges.
+HOW TO PREVENT THIS :
+Store roles and permissions in the database.
+Use session identifiers only in cookies.
+Validate privileges on every request.

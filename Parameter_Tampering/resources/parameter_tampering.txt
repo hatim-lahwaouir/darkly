@@ -1,0 +1,12 @@
+curl -X POST "http://10.11.100.224/index.php?page=survey" -d "sujet=5&valeur=9999" | grep "The flag is"
+After submitting this request, the application returned the flag.
+The parameter valeur appears to represent a numeric value . By modifying it to 9999, which is clearly outside a normal expected range, the server accepted the value and processed it without validation.
+This confirms a Parameter Tampering 
+The application accepts a numeric parameter from the client.
+No server-side validation enforces the expected maximum value.
+The attacker can submit values greater than the intended limit.
+HOW TO PREVENT THIS:
+Validate all numeric inputs server-side.
+Enforce strict value ranges .
+Reject unexpected or out-of-range values.
+Never rely on client-side restrictions (HTML forms or JavaScript).

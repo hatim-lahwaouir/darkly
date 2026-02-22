@@ -1,0 +1,13 @@
+index.php?page=../../../../../../../etc/passwd
+After submitting this request, the application returned the flag.
+This demonstrates that the page parameter is directly used to include files from the server without proper validation.
+By using directory traversal sequences (../), it was possible to move outside the intended directory and access a sensitive system file.
+The application accepts user input in the page parameter.
+That value is used to load or include a file on the server.
+No restriction prevents navigating to parent directories.
+Sensitive system files such as /etc/passwd become accessible.
+HOW TO PREVENT THIS:
+Never use raw user input to construct file paths.
+Implement a strict allowlist of permitted files.
+Resolve and validate paths to ensure they stay within an intended directory.
+Disable dangerous configurations (e.g., allow_url_include in PHP).

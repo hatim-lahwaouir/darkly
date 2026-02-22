@@ -1,0 +1,12 @@
+curl -v -X POST "http://10.11.100.224/index.php?page=recover" --data "mail=test@test.com&Submit=submit" | grep "The flag is"
+After submitting this request, the application returned the flag.
+The recover page accepts an email address in the mail parameter.
+The server processes user-supplied input in a sensitive operation.
+No validation or escaping of input occurs.
+The input directly affects command execution .
+This allowed showing of the flag through the normal request by manipulating input parameters.
+HOW TO PREVENT THIS :
+Never pass raw user input to system commands.
+Validate all user input strictly.
+Escape all arguments if commands must be executed.
+Run services with minimal privileges.

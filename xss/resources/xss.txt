@@ -1,0 +1,18 @@
+On the feedback page, there is a textarea field where users can submit a message.
+When the following payload was inserted into the message field:
+<script>let i = 0 ; </script>
+The application accepted it and, after submission, displayed the flag.
+The application allowed raw HTML/JavaScript code to be submitted and processed without filtering or escaping it.
+When a website takes user input and renders it in the browser without properly sanitizing it, injected JavaScript can execute inside the page.
+This vulnerability is called Cross-Site Scripting (XSS).
+the application does not sanitize user input before displaying it.
+User input is accepted without validation.
+Output is rendered without proper escaping.
+The application trusts client input and directly reflects it in HTML.
+
+
+HOW TO PREVENT THIS:
+
+Escape all user-generated content before displaying it in HTML.
+Sanitize inputs if HTML formatting is allowed.
+Mark cookies as HttpOnly, Secure, and SameSite.
